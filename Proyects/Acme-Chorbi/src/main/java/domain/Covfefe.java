@@ -37,6 +37,7 @@ public class Covfefe extends DomainEntity {
 	private Date	moment;
 	private Integer	score;
 	private String	uniqueLabel;
+	private String	justification;
 
 
 	@NotBlank
@@ -81,6 +82,15 @@ public class Covfefe extends DomainEntity {
 	}
 	public void setScore(final Integer score) {
 		this.score = score;
+	}
+
+	public String getJustification() {
+		return this.justification;
+	}
+
+	public void setJustification(final String justification) {
+
+		this.justification = justification;
 	}
 
 

@@ -910,6 +910,7 @@
 		<property name="description" value="Covfefe1"/>
 		<property name="uniqueLabel" value="123456"/>
 		<property name="score" value="1"/>
+		<property name="justification" value=""/>
 		<property name="manager" ref="manager1"/>
 		<property name="event" ref="event1"/>
 	</bean>
@@ -920,6 +921,7 @@
 		<property name="description" value="Covfefe2"/>
 		<property name="uniqueLabel" value="123457"/>
 		<property name="score" value="2"/>
+		<property name="justification" value=""/>
 		<property name="manager" ref="manager1"/>
 		<property name="event" ref="event2"/>
 	</bean>
@@ -930,6 +932,7 @@
 		<property name="description" value="Covfefe3"/>
 		<property name="uniqueLabel" value="123458"/>
 		<property name="score" value="3"/>
+		<property name="justification" value=""/>
 		<property name="manager" ref="manager2"/>
 		<property name="event" ref="event3"/>
 	</bean>
@@ -940,6 +943,7 @@
 		<property name="description" value="Covfefe4"/>
 		<property name="uniqueLabel" value="123459"/>
 		<property name="score" value="5"/>
+		<property name="justification" value=""/>
 		<property name="manager" ref="manager2"/>
 		<property name="event" ref="event4"/>
 	</bean>
@@ -950,6 +954,7 @@
 		<property name="description" value="Covfefe5"/>
 		<property name="uniqueLabel" value="123450"/>
 		<property name="score" value="5"/>
+		<property name="justification" value=""/>
 		<property name="manager" ref="manager3"/>
 		<property name="event" ref="event5"/>
 	</bean>
@@ -960,6 +965,7 @@
 		<property name="description" value="Covfefe6"/>
 		<property name="uniqueLabel" value="123451"/>
 		<property name="score" value="5"/>
+		<property name="justification" value="canceled"/>
 		<property name="manager" ref="manager3"/>
 		<property name="event" ref="event6"/>
 	</bean>

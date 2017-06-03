@@ -20,8 +20,11 @@ public interface CovfefeRepository extends JpaRepository<Covfefe, Integer> {
 	Covfefe findByEvent(int eventId);
 
 	@Query("select count(c)*1.0/(select count(c)*1.0 from Covfefe c) from Covfefe c where c.score > 3")
-	Double ratioCofefesWithMoreThanThree();
+	Double ratioCovfefesWithMoreThanThree();
 
 	@Query("select c.manager from Covfefe c where c.score = 5 group by c.manager order by count(c.score) DESC")
 	Collection<Manager> managerWithMoreCovfefesWith5();
+
+	@Query("select c from Covfefe c where c.id = ?1")
+	Covfefe findOne(int covfefeId);
 }
