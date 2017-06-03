@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.CovfefeService;
 import controllers.AbstractController;
 import domain.Covfefe;
+import forms.CancelCovfefe;
 
 @Controller
 @RequestMapping("/covfefe/actor")
@@ -31,9 +32,10 @@ public class CovfefeActorController extends AbstractController {
 	public ModelAndView create() {
 
 		ModelAndView result;
-		final CancelCovfefe covfefe;
+		final CancelCovfefe cancel;
 
-		covfefe = new CancelCovfefe();
+		cancel = new CancelCovfefe();
+		final Covfefe covfefe = this.covfefeService.findOne(cancel.getCovfefeId());
 
 		result = this.createEditModelAndView(covfefe);
 

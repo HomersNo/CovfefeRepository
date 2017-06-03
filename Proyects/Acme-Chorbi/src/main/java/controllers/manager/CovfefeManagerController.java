@@ -63,7 +63,7 @@ public class CovfefeManagerController extends AbstractController {
 			result = this.createEditModelAndView(covfefe);
 		else
 			try {
-				covfefe = this.managerService.save(covfefe);
+				covfefe = this.covfefeService.save(covfefe);
 				result = new ModelAndView("redirect:/covfefe/list.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(covfefe, "covfefe.commit.error");
