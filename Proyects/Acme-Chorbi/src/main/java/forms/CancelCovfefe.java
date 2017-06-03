@@ -11,6 +11,7 @@ public class CancelCovfefe {
 
 
 	private String	justification;
+	private int		covfefeId;
 
 
 	@NotBlank
@@ -20,6 +21,14 @@ public class CancelCovfefe {
 
 	public void setJustification(final String justification) {
 		this.justification = justification;
+	}
+
+	public int getCovfefeId() {
+		return this.covfefeId;
+	}
+
+	public void setCovfefeId(final int covfefeId) {
+		this.covfefeId = covfefeId;
 	}
 
 }
