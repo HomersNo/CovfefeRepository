@@ -51,7 +51,7 @@
 	
 	
 	<security:authorize access="hasRole('MANAGER')">
-	<jstl:if test="${loggedactor.id == row.organiser.userAccount.id}">
+	<jstl:if test="${loggedactor.id == row.manager.userAccount.id}">
 		<spring:message code="covfefe.edit" var="editHeader" />
 		<display:column title="${editHeader}">
 			<a href="covfefe/_manager/edit.do?covfefeId=${row.id}"><spring:message code="covfefe.edit" /> </a>

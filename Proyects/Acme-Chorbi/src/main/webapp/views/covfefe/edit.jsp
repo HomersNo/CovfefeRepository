@@ -32,11 +32,11 @@
 		<form:label path="moment">
 			<spring:message code="covfefe.moment" />:
 		</form:label>
-		<form:input placeholder="dd/MM/yyyy HH:mm" path="moment" />
+		<form:input readonly="true" placeholder="dd/MM/yyyy HH:mm" path="moment" />
 		<form:errors cssClass="error" path="moment" />
 	</div> <br>
-	<acme:textbox code="covfefe.score" path="numberSeat"/><br />
-	<acme:textbox code="covfefe.uniqueLabel" path="picture" readonly="true"/><br />
+	<acme:textbox code="covfefe.score" path="score"/><br />
+	<acme:textbox code="covfefe.uniqueLabel" path="uniqueLabel" readonly="true"/><br />
 
 
 	<input type="submit" name="save"

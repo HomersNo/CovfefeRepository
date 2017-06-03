@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.CovfefeRepository;
 import domain.Covfefe;
@@ -25,6 +27,9 @@ public class CovfefeService {
 
 	@Autowired
 	ManagerService		managerService;
+
+	@Autowired
+	Validator			validator;
 
 
 	public CovfefeService() {
@@ -73,6 +78,24 @@ public class CovfefeService {
 		this.covfefeRepository.delete(covfefe);
 	}
 
+	public Covfefe reconstruct(final Covfefe covfefe, final BindingResult binding) {
+
+		Covfefe result;
+		result = this.create();
+
+		result.setDescription(covfefe.getDescription());
+		result.setEvent(covfefe.getEvent());
+		result.setMoment(covfefe.getMoment());
+		result.setScore(covfefe.getScore());
+		result.setTitle(covfefe.getTitle());
+		result.setUniqueLabel(covfefe.getUniqueLabel());
+
+		result.setManager(this.managerService.findByPrincipal());
+
+		this.validator.validate(result, binding);
+
+		return result;
+	}
 	//Queries
 
 	public Collection<Covfefe> findAllByManager(final Manager manager) {
