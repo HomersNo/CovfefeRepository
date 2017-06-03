@@ -46,6 +46,11 @@ public class CovfefeService {
 
 	}
 
+	public Collection<Covfefe> findAll() {
+
+		return this.covfefeRepository.findAll();
+	}
+
 	public Covfefe findOne(final int covfefeId) {
 
 		return this.covfefeRepository.findOne(covfefeId);
