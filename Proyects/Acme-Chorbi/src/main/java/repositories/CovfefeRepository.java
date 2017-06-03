@@ -22,6 +22,6 @@ public interface CovfefeRepository extends JpaRepository<Covfefe, Integer> {
 	@Query("select count(c)*1.0/(select count(c)*1.0 from Covfefe c) from Covfefe c where c.score > 3")
 	Double ratioCofefesWithMoreThanThree();
 
-	@Query("select c.manager from Covfefe c group by c.manager where c.score = 5")
+	@Query("select c.manager from Covfefe c where c.score = 5 group by c.manager")
 	Collection<Manager> managerWithMoreCovfefesWith5();
 }

@@ -909,7 +909,7 @@
 		<property name="moment" value="2017/05/23 15:00"/>
 		<property name="description" value="Covfefe1"/>
 		<property name="uniqueLabel" value="123456"/>
-		<property name="score" value="5"/>
+		<property name="score" value="1"/>
 		<property name="manager" ref="manager1"/>
 		<property name="chorbi" ref="chorbi1"/>
 	</bean>
@@ -919,9 +919,9 @@
 		<property name="moment" value="2017/05/23 15:00"/>
 		<property name="description" value="Covfefe2"/>
 		<property name="uniqueLabel" value="123457"/>
-		<property name="score" value="4"/>
-		<property name="manager" ref="manager2"/>
-		<property name="chorbi" ref="chorbi1"/>
+		<property name="score" value="2"/>
+		<property name="manager" ref="manager1"/>
+		<property name="chorbi" ref="chorbi2"/>
 	</bean>
 	
 	<bean id="covfefe3" class="domain.Covfefe">
@@ -930,7 +930,7 @@
 		<property name="description" value="Covfefe3"/>
 		<property name="uniqueLabel" value="123458"/>
 		<property name="score" value="3"/>
-		<property name="manager" ref="manager1"/>
+		<property name="manager" ref="manager2"/>
 		<property name="chorbi" ref="chorbi1"/>
 	</bean>
 	
@@ -939,8 +939,8 @@
 		<property name="moment" value="2017/05/23 15:00"/>
 		<property name="description" value="Covfefe4"/>
 		<property name="uniqueLabel" value="123459"/>
-		<property name="score" value="2"/>
-		<property name="manager" ref="manager1"/>
+		<property name="score" value="5"/>
+		<property name="manager" ref="manager2"/>
 		<property name="chorbi" ref="chorbi2"/>
 	</bean>
 	
@@ -950,8 +950,8 @@
 		<property name="description" value="Covfefe5"/>
 		<property name="uniqueLabel" value="123450"/>
 		<property name="score" value="5"/>
-		<property name="manager" ref="manager1"/>
-		<property name="chorbi" ref="chorbi3"/>
+		<property name="manager" ref="manager3"/>
+		<property name="chorbi" ref="chorbi2"/>
 	</bean>
 	
 	<bean id="covfefe6" class="domain.Covfefe">
@@ -960,8 +960,8 @@
 		<property name="description" value="Covfefe6"/>
 		<property name="uniqueLabel" value="123451"/>
 		<property name="score" value="5"/>
-		<property name="manager" ref="manager2"/>
-		<property name="chorbi" ref="chorbi1"/>
+		<property name="manager" ref="manager3"/>
+		<property name="chorbi" ref="chorbi2"/>
 	</bean>
 	
 	<!-- SYSTEM CONFIGURATION -->
