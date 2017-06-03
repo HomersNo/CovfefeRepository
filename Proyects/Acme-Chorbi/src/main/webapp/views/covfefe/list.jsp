@@ -51,18 +51,16 @@
 	
 	
 	<security:authorize access="hasRole('MANAGER')">
-	<jstl:if test="${loggedactor.id == row.manager.userAccount.id}">
+	
 		<spring:message code="covfefe.edit" var="editHeader" />
 		<display:column title="${editHeader}">
+		<jstl:if test="${loggedactor.id == row.manager.userAccount.id}">
 			<a href="covfefe/_manager/edit.do?covfefeId=${row.id}"><spring:message code="covfefe.edit" /> </a>
+		</jstl:if>
 		</display:column>
 	
 	
-		<spring:message code="covfefe.delete" var="deleteHeader" />
-		<display:column title="${deleteHeader}">
-			<a href="covfefe/_manager/delete.do?covfefeId=${row.id}"><spring:message code="covfefe.delete" /> </a>
-		</display:column>
-	</jstl:if>
+
 	</security:authorize>
 	
 	<security:authorize access="isAuthenticated()">
@@ -70,6 +68,7 @@
 		<display:column title="${cancelHeader}">
 		<jstl:if test="${true}"> <!-- Change true for whatever condition it may be -->
 			<a href="covfefe/actor/covfefe.do?covfefeId=${row.id}">
+			<spring:message code="covfefe.cancel"/>
 			 </a>
 		</jstl:if>
 		</display:column>

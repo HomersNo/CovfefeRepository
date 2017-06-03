@@ -1,10 +1,12 @@
 
 package services;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -46,6 +48,7 @@ public class CovfefeService {
 
 		result.setMoment(new Date(System.currentTimeMillis() - 1));
 		result.setManager(principal);
+		result.setUniqueLabel(this.randomKey());
 
 		return result;
 
@@ -82,6 +85,8 @@ public class CovfefeService {
 
 		Covfefe result;
 		result = this.create();
+		if (covfefe.getId() != 0)
+			result = this.findOne(covfefe.getId());
 
 		result.setDescription(covfefe.getDescription());
 		result.setEvent(covfefe.getEvent());
@@ -136,4 +141,53 @@ public class CovfefeService {
 
 		return result;
 	}
+
+	public void flush() {
+
+		this.covfefeRepository.flush();
+	}
+
+	//Random methods
+
+	public String randomAlphaNumeric() {
+		char result;
+		final String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		final Random random = new Random();
+		result = alphabet.charAt(random.nextInt(62));
+		return Character.toString(result);
+	}
+
+	public String randomLetter() {
+		char result;
+		final String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		final Random random = new Random();
+		result = alphabet.charAt(random.nextInt(52));
+		return Character.toString(result);
+	}
+
+	public String randomNumber() {
+		char result;
+		final String alphabet = "1234567890";
+		final Random random = new Random();
+		result = alphabet.charAt(random.nextInt(10));
+		return Character.toString(result);
+	}
+
+	public String dateKeyGenerator(final String format) {
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+		final String moment = simpleDateFormat.format(new Date());
+
+		return moment;
+	}
+
+	public String randomKey() {
+
+		String result = "";
+
+		result += /* aquí generamos la clave */this.dateKeyGenerator("yyMMdd") + this.randomAlphaNumeric() + this.randomLetter() + this.randomNumber();
+
+		return result;
+	}
+
 }

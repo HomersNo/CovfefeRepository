@@ -902,6 +902,33 @@
 		</property>
 	</bean>
 	
+	<bean id="event7" class="domain.Event">
+		<property name="title" value="extra 1"/>
+		<property name="moment" value="2021/04/11 10:00"/>
+		<property name="description" value="extra 1"/>
+		<property name="picture" value="http://cienciauanl.uanl.mx/wp-content/uploads/2015/04/glutenalimentos.jpg"/>
+		<property name="numberSeat" value="45"/>
+		<property name="organiser" ref="manager4"/>
+		<property name="registered">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="event8" class="domain.Event">
+		<property name="title" value="Extra 2"/>
+		<property name="moment" value="2021/04/11 10:00"/>
+		<property name="description" value="Extra 2"/>
+		<property name="picture" value="http://cienciauanl.uanl.mx/wp-content/uploads/2015/04/glutenalimentos.jpg"/>
+		<property name="numberSeat" value="45"/>
+		<property name="organiser" ref="manager4"/>
+		<property name="registered">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Covfefes -->
 	
 	<bean id="covfefe1" class="domain.Covfefe">

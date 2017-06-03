@@ -170,4 +170,9 @@ public class EventService {
 		return result;
 	}
 
+	public Collection<Event> findAllNoCovfefe() {
+
+		return this.eventRepository.findAllNoCovfefe();
+	}
+
 }

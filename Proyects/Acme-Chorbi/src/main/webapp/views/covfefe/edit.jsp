@@ -23,7 +23,6 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="event"/>
 	
 
 	<acme:textbox code="covfefe.title" path="title"/><br />
@@ -37,6 +36,17 @@
 	</div> <br>
 	<acme:textbox code="covfefe.score" path="score"/><br />
 	<acme:textbox code="covfefe.uniqueLabel" path="uniqueLabel" readonly="true"/><br />
+	
+		<form:label path="event">
+		<spring:message code="covfefe.event" />:
+	</form:label>
+	<form:select id="events" path="event">
+		<jstl:forEach items="${events}" var="thisEvent">
+			<form:option value="${thisEvent.id}" label="${thisEvent.title}" />
+		</jstl:forEach>
+	</form:select>
+	<form:errors cssClass="error" path="event" />
+	<br> <br>
 
 
 	<input type="submit" name="save"
