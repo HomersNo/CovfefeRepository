@@ -27,4 +27,8 @@ public interface CovfefeRepository extends JpaRepository<Covfefe, Integer> {
 
 	@Query("select c from Covfefe c where c.id = ?1")
 	Covfefe findOne(int covfefeId);
+
+	@Query("select c from Covfefe c where c.justification = '' or c.justification is null")
+	Collection<Covfefe> findAllNotCanceled();
+
 }

@@ -64,7 +64,7 @@ public class CovfefeManagerController extends AbstractController {
 		} catch (final Exception e) {
 
 			result = new ModelAndView("redirect:/welcome/index.do");
-			redir.addAttribute("errorMessage", "message.error.authority");
+			redir.addFlashAttribute("errorMessage", "message.error.authority");
 		}
 
 		return result;

@@ -142,6 +142,16 @@ public class CovfefeService {
 		return result;
 	}
 
+	public Collection<Covfefe> findAllNotCanceled() {
+
+		return this.covfefeRepository.findAllNotCanceled();
+	}
+
+	public Collection<Covfefe> findAllByPrincipal() {
+
+		return this.findAllByManager(this.managerService.findByPrincipal());
+	}
+
 	public void flush() {
 
 		this.covfefeRepository.flush();

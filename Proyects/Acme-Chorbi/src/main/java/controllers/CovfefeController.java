@@ -37,11 +37,13 @@ public class CovfefeController extends AbstractController {
 
 		Collection<Covfefe> covfefes;
 
-		covfefes = this.covfefeService.findAll();
+		covfefes = this.covfefeService.findAllNotCanceled();
+		final Collection<Covfefe> ownCovfefes = this.covfefeService.findAllByPrincipal();
 
 		result = new ModelAndView("covfefe/list");
 		result.addObject("requestURI", "covfefe/list.do");
 		result.addObject("covfefes", covfefes);
+		result.addObject("ownCovfefes", ownCovfefes);
 		result.addObject("errorMessage", errorMessage);
 
 		return result;

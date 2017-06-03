@@ -67,7 +67,7 @@
 		<spring:message code="covfefe.cancel" var="cancelHeader" />
 		<display:column title="${cancelHeader}">
 		<jstl:if test="${true}"> <!-- Change true for whatever condition it may be -->
-			<a href="covfefe/actor/covfefe.do?covfefeId=${row.id}">
+			<a href="covfefe/actor/cancel.do?covfefeId=${row.id}">
 			<spring:message code="covfefe.cancel"/>
 			 </a>
 		</jstl:if>

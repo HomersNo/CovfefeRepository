@@ -3,6 +3,8 @@ package forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import domain.Covfefe;
+
 public class CancelCovfefe {
 
 	public CancelCovfefe() {
@@ -11,7 +13,7 @@ public class CancelCovfefe {
 
 
 	private String	justification;
-	private int		covfefeId;
+	private Covfefe	covfefe;
 
 
 	@NotBlank
@@ -23,12 +25,11 @@ public class CancelCovfefe {
 		this.justification = justification;
 	}
 
-	public int getCovfefeId() {
-		return this.covfefeId;
+	public Covfefe getCovfefe() {
+		return this.covfefe;
 	}
 
-	public void setCovfefeId(final int covfefeId) {
-		this.covfefeId = covfefeId;
+	public void setCovfefe(final Covfefe covfefe) {
+		this.covfefe = covfefe;
 	}
-
 }

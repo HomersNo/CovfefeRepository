@@ -19,12 +19,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme"	tagdir="/WEB-INF/tags"%>
 
-<form:form action="${requestURI}" modelAttribute="cancelCovfefe">
+<form:form action="${requestURI}" modelAttribute="cancel">
 
-	<form:hidden path="covfefeId" />
+	<form:hidden path="covfefe" />
 	
 
-	<acme:textbox code="covfefe.justification" path="justification"/><br />
+	<acme:textarea code="covfefe.justification" path="justification"/><br />
 	
 
 
@@ -32,7 +32,7 @@
 		value="<spring:message code="covfefe.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="covfefe.cancel" />"
-		onclick="location.href = ('covfefe/list.do');" />
+		onclick="location.href = ('${cancelURI}');" />
 	<br />
 
 	

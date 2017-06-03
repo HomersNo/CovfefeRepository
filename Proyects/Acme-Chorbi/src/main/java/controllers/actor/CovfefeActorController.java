@@ -3,8 +3,10 @@ package controllers.actor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CovfefeService;
@@ -29,37 +31,60 @@ public class CovfefeActorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(@RequestParam final int covfefeId) {
 
 		ModelAndView result;
 		final CancelCovfefe cancel;
+		final Covfefe covfefe = this.covfefeService.findOne(covfefeId);
 
 		cancel = new CancelCovfefe();
-		final Covfefe covfefe = this.covfefeService.findOne(cancel.getCovfefeId());
+		cancel.setCovfefe(covfefe);
 
-		result = this.createEditModelAndView(covfefe);
+		result = this.createEditModelAndView(cancel);
 
+		return result;
+	}
+
+	@RequestMapping(value = "/cancel", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(final CancelCovfefe cancel, final BindingResult binding) {
+		ModelAndView result;
+		Covfefe covfefe;
+
+		covfefe = cancel.getCovfefe();
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(cancel);
+		else
+			try {
+				covfefe.setJustification(cancel.getJustification());
+				this.covfefeService.save(covfefe);
+				result = new ModelAndView("redirect:/covfefe/list.do");
+
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(cancel, "covfefe.commit.error");
+			}
 		return result;
 	}
 
 	// Ancillary methods
 
-	protected ModelAndView createEditModelAndView(final Covfefe covfefe) {
+	protected ModelAndView createEditModelAndView(final CancelCovfefe cancel) {
 		ModelAndView result;
 
-		result = this.createEditModelAndView(covfefe, null);
+		result = this.createEditModelAndView(cancel, null);
 
 		return result;
 	}
-	protected ModelAndView createEditModelAndView(final Covfefe covfefe, final String message) {
+	protected ModelAndView createEditModelAndView(final CancelCovfefe cancel, final String message) {
 		ModelAndView result;
 
-		final String requestURI = "covfefe/_manager/edit.do";
+		final String requestURI = "covfefe/actor/cancel.do";
 
-		result = new ModelAndView("covfefe/edit");
-		result.addObject("covfefe", covfefe);
+		result = new ModelAndView("covfefe/cancel");
+		result.addObject("cancel", cancel);
 		result.addObject("message", message);
 		result.addObject("requestURI", requestURI);
+		result.addObject("cancelURI", "covfefe/list.do");
 
 		return result;
 	}

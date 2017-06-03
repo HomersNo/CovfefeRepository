@@ -929,6 +929,32 @@
 		</property>
 	</bean>
 	
+	<bean id="event9" class="domain.Event">
+		<property name="title" value="Extra 3"/>
+		<property name="moment" value="2021/04/11 10:00"/>
+		<property name="description" value="Extra 3"/>
+		<property name="picture" value="http://cienciauanl.uanl.mx/wp-content/uploads/2015/04/glutenalimentos.jpg"/>
+		<property name="numberSeat" value="45"/>
+		<property name="organiser" ref="manager4"/>
+		<property name="registered">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="event10" class="domain.Event">
+		<property name="title" value="Extra 4"/>
+		<property name="moment" value="2021/04/11 10:00"/>
+		<property name="description" value="Extra 4"/>
+		<property name="picture" value="http://cienciauanl.uanl.mx/wp-content/uploads/2015/04/glutenalimentos.jpg"/>
+		<property name="numberSeat" value="45"/>
+		<property name="organiser" ref="manager4"/>
+		<property name="registered">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Covfefes -->
 	
 	<bean id="covfefe1" class="domain.Covfefe">
@@ -992,9 +1018,20 @@
 		<property name="description" value="Covfefe6"/>
 		<property name="uniqueLabel" value="123451"/>
 		<property name="score" value="5"/>
-		<property name="justification" value="canceled"/>
+		<property name="justification" value="canceled because of reasons"/>
 		<property name="manager" ref="manager3"/>
 		<property name="event" ref="event6"/>
+	</bean>
+	
+	<bean id="covfefe7" class="domain.Covfefe">
+		<property name="title" value="Covfefe 7"/>
+		<property name="moment" value="2017/05/23 15:00"/>
+		<property name="description" value="Covfefe7"/>
+		<property name="uniqueLabel" value="123451"/>
+		<property name="score" value="5"/>
+		<property name="justification" value=""/>
+		<property name="manager" ref="manager3"/>
+		<property name="event" ref="event7"/>
 	</bean>
 	
 	
