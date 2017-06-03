@@ -37,6 +37,7 @@ public class Covfefe extends DomainEntity {
 	private Date	moment;
 	private Integer	score;
 	private String	uniqueLabel;
+	private String	justification;
 
 
 	@NotBlank
@@ -83,11 +84,20 @@ public class Covfefe extends DomainEntity {
 		this.score = score;
 	}
 
+	public String getJustification() {
+		return this.justification;
+	}
+
+	public void setJustification(final String justification) {
+
+		this.justification = justification;
+	}
+
 
 	// Relationships ----------------------------------------------------------
 
 	private Manager	manager;
-	private Chorbi	chorbi;
+	private Event	event;
 
 
 	@Valid
@@ -103,11 +113,11 @@ public class Covfefe extends DomainEntity {
 	@Valid
 	@OneToOne(optional = true)
 	@NotNull
-	public Chorbi getChorbi() {
-		return this.chorbi;
+	public Event getEvent() {
+		return this.event;
 	}
-	public void setChorbi(final Chorbi chorbi) {
-		this.chorbi = chorbi;
+	public void setEvent(final Event event) {
+		this.event = event;
 	}
 
 }
