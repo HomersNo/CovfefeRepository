@@ -17,6 +17,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="fn"	uri="/WEB-INF/tags/functions"%>
 
 
 <jstl:set var="full" value="font-weight: grey; color:grey; background-color:white;" />
@@ -99,6 +100,7 @@
 	</jstl:if>
 	</security:authorize>
 	
+	
 	<security:authorize access="hasRole('CHORBI')">
 		<spring:message code="event.register" var="registerHeader" />
 		<display:column title="${registerHeader}">
@@ -121,6 +123,19 @@
 			 </a>
 		</jstl:if>
 		</display:column>
+	</security:authorize>
+	
+		<spring:message code="show.covfefe" var="showHeader"/>
+		<display:column title="${showHeader}">
+			<a href="covfefe/list.do?eventId=${row.id}"><spring:message code="show.covfefe" /> </a>
+			
+		</display:column>
+	
+	<security:authorize access="hasRole('ADMIN')">
+		<spring:message code="event.create.ondaleck" var ="${ondaleckHeader}"/>
+			<display:column title="${ondaleckHeader}">
+				<a href="covfefe/admin/create.do?eventId=${row.id}"><spring:message code="event.create.ondaleck" /> </a>
+			</display:column>	
 	</security:authorize>
 	
 </display:table>

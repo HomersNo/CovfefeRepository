@@ -214,7 +214,7 @@
 	</bean>
 
 	<bean id="admin2" class="domain.Administrator">
-		<property name="name" value="Administrador" />
+		<property name="name" value="Sam" />
 		<property name="surname" value="2" />
 		<property name="email" value="admin2@gmail.com" />
 		<property name="phoneNumber" value="2345" />
@@ -955,82 +955,82 @@
 		</property>
 	</bean>
 	
-	<!-- Covfefes -->
+	<!-- Ondalecks -->
 	
-	<bean id="covfefe1" class="domain.Covfefe">
-		<property name="title" value="Covfefe 1"/>
+	<bean id="ondaleck1" class="domain.Ondaleck">
+		<property name="title" value="Ondaleck 1"/>
 		<property name="moment" value="2017/05/23 15:00"/>
-		<property name="description" value="Covfefe1"/>
-		<property name="uniqueLabel" value="123456"/>
-		<property name="score" value="1"/>
-		<property name="justification" value=""/>
-		<property name="manager" ref="manager1"/>
+		<property name="description" value="Ondaleck1"/>
+		<property name="uniqueLabel" value="Ae12d#12345"/>
+		<property name="assessment" value="HIGH"/>
+		<property name="justification"><null /></property>
+		<property name="admin" ref="admin"/>
 		<property name="event" ref="event1"/>
 	</bean>
 	
-	<bean id="covfefe2" class="domain.Covfefe">
-		<property name="title" value="Covfefe 2"/>
+	<bean id="ondaleck2" class="domain.Ondaleck">
+		<property name="title" value="Ondaleck 2"/>
 		<property name="moment" value="2017/05/23 15:00"/>
-		<property name="description" value="Covfefe2"/>
-		<property name="uniqueLabel" value="123457"/>
-		<property name="score" value="2"/>
-		<property name="justification" value=""/>
-		<property name="manager" ref="manager1"/>
+		<property name="description" value="Ondaleck2"/>
+		<property name="uniqueLabel" value="Ae12d#12346"/>
+		<property name="assessment" value="MEDIUM"/>
+		<property name="justification"><null /></property>
+		<property name="admin" ref="admin"/>
 		<property name="event" ref="event2"/>
 	</bean>
 	
-	<bean id="covfefe3" class="domain.Covfefe">
-		<property name="title" value="Covfefe 3"/>
+	<bean id="ondaleck3" class="domain.Ondaleck">
+		<property name="title" value="Ondaleck 3"/>
 		<property name="moment" value="2017/05/23 15:00"/>
-		<property name="description" value="Covfefe3"/>
-		<property name="uniqueLabel" value="123458"/>
-		<property name="score" value="3"/>
-		<property name="justification" value=""/>
-		<property name="manager" ref="manager2"/>
+		<property name="description" value="Ondaleck3"/>
+		<property name="uniqueLabel" value="Ae12d#12347"/>
+		<property name="assessment" value="LOW"/>
+		<property name="justification"><null /></property>
+		<property name="admin" ref="admin2"/>
 		<property name="event" ref="event3"/>
 	</bean>
 	
-	<bean id="covfefe4" class="domain.Covfefe">
-		<property name="title" value="Covfefe 4"/>
+	<bean id="ondaleck4" class="domain.Ondaleck">
+		<property name="title" value="Ondaleck 4"/>
 		<property name="moment" value="2017/05/23 15:00"/>
-		<property name="description" value="Covfefe4"/>
-		<property name="uniqueLabel" value="123459"/>
-		<property name="score" value="5"/>
-		<property name="justification" value=""/>
-		<property name="manager" ref="manager2"/>
+		<property name="description" value="Ondaleck4"/>
+		<property name="uniqueLabel" value="Ae12d#12348"/>
+		<property name="assessment" value="HIGH"/>
+		<property name="justification"><null /></property>
+		<property name="admin" ref="admin2"/>
 		<property name="event" ref="event4"/>
 	</bean>
 	
-	<bean id="covfefe5" class="domain.Covfefe">
-		<property name="title" value="Covfefe 5"/>
+	<bean id="ondaleck5" class="domain.Ondaleck">
+		<property name="title" value="Ondaleck 5"/>
 		<property name="moment" value="2017/05/23 15:00"/>
-		<property name="description" value="Covfefe5"/>
-		<property name="uniqueLabel" value="123450"/>
-		<property name="score" value="5"/>
-		<property name="justification" value=""/>
-		<property name="manager" ref="manager3"/>
+		<property name="description" value="Ondaleck5"/>
+		<property name="uniqueLabel" value="Ae12d#12349"/>
+		<property name="assessment" value="MEDIUM"/>
+		<property name="justification"><null /></property>
+		<property name="admin" ref="admin2"/>
 		<property name="event" ref="event5"/>
 	</bean>
 	
-	<bean id="covfefe6" class="domain.Covfefe">
-		<property name="title" value="Covfefe 6"/>
+	<bean id="ondaleck6" class="domain.Ondaleck">
+		<property name="title" value="Ondaleck 6"/>
 		<property name="moment" value="2017/05/23 15:00"/>
-		<property name="description" value="Covfefe6"/>
-		<property name="uniqueLabel" value="123451"/>
-		<property name="score" value="5"/>
+		<property name="description" value="Ondaleck6"/>
+		<property name="uniqueLabel" value="Ae12d#12340"/>
+		<property name="assessment" value="LOW"/>
 		<property name="justification" value="canceled because of reasons"/>
-		<property name="manager" ref="manager3"/>
+		<property name="admin" ref="admin"/>
 		<property name="event" ref="event6"/>
 	</bean>
 	
-	<bean id="covfefe7" class="domain.Covfefe">
-		<property name="title" value="Covfefe 7"/>
+	<bean id="ondaleck7" class="domain.Ondaleck">
+		<property name="title" value="Ondaleck 7"/>
 		<property name="moment" value="2017/05/23 15:00"/>
-		<property name="description" value="Covfefe7"/>
-		<property name="uniqueLabel" value="123451"/>
-		<property name="score" value="5"/>
-		<property name="justification" value=""/>
-		<property name="manager" ref="manager3"/>
+		<property name="description" value="Ondaleck7"/>
+		<property name="uniqueLabel" value="Ae12d#12341"/>
+		<property name="assessment" value="HIGH"/>
+		<property name="justification"><null/></property>
+		<property name="admin" ref="admin"/>
 		<property name="event" ref="event7"/>
 	</bean>
 	

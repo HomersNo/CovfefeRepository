@@ -3,17 +3,17 @@ package forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import domain.Covfefe;
+import domain.Ondaleck;
 
-public class CancelCovfefe {
+public class CancelOndalek {
 
-	public CancelCovfefe() {
+	public CancelOndalek() {
 		super();
 	}
 
 
 	private String	justification;
-	private Covfefe	covfefe;
+	private Ondaleck	covfefe;
 
 
 	@NotBlank
@@ -25,11 +25,11 @@ public class CancelCovfefe {
 		this.justification = justification;
 	}
 
-	public Covfefe getCovfefe() {
+	public Ondaleck getCovfefe() {
 		return this.covfefe;
 	}
 
-	public void setCovfefe(final Covfefe covfefe) {
+	public void setCovfefe(final Ondaleck covfefe) {
 		this.covfefe = covfefe;
 	}
 }

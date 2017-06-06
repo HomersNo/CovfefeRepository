@@ -6,20 +6,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.CovfefeRepository;
-import domain.Covfefe;
+import repositories.OndaleckRepository;
+import domain.Ondaleck;
 
 @Component
 @Transactional
-public class StringToCovfefeConverter implements Converter<String, Covfefe> {
+public class StringToOndaleckConverter implements Converter<String, Ondaleck> {
 
 	@Autowired
-	CovfefeRepository	covfefeRepository;
+	OndaleckRepository	covfefeRepository;
 
 
 	@Override
-	public Covfefe convert(final String text) {
-		Covfefe result;
+	public Ondaleck convert(final String text) {
+		Ondaleck result;
 		int id;
 
 		if (text == "")

@@ -22,7 +22,10 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 	@Query("select e from Event e where e.organiser.id = ?1")
 	Collection<Event> findAllByPrincipal(int id);
 
-	@Query("select e from Event e where e not in (select c.event from Covfefe c)")
+	@Query("select e from Event e where e not in (select c.event from Ondaleck c)")
 	Collection<Event> findAllNoCovfefe();
+
+	@Query("select o.event from Ondaleck o where o.justification != null or o.justification != ''")
+	Collection<Event> findWithCancelledOndaleck();
 
 }

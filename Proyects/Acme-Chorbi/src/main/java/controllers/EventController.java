@@ -36,13 +36,18 @@ public class EventController extends AbstractController {
 		ModelAndView result;
 
 		Collection<Event> events;
-
+		final Collection<Event> unassessedEvents;
+		Collection<Event> withCancelled;
 		events = this.eventService.findAllEventsInOneMonth();
+		withCancelled = this.eventService.findAllWithCancelled();
+		unassessedEvents = this.eventService.findAllNoCovfefe();
 
 		result = new ModelAndView("event/list");
 		result.addObject("requestURI", "event/listInminent.do");
 		result.addObject("events", events);
+		result.addObject("unassessedEvents", unassessedEvents);
 		result.addObject("errorMessage", errorMessage);
+		result.addObject("withCancelled", withCancelled);
 
 		return result;
 	}
@@ -52,13 +57,20 @@ public class EventController extends AbstractController {
 		ModelAndView result;
 
 		Collection<Event> events;
+		final Collection<Event> unassessedEvents;
+		Collection<Event> withCancelled;
 
 		events = this.eventService.findAll();
+
+		unassessedEvents = this.eventService.findAllNoCovfefe();
+		withCancelled = this.eventService.findAllWithCancelled();
 
 		result = new ModelAndView("event/list");
 		result.addObject("requestURI", "event/list.do");
 		result.addObject("events", events);
+		result.addObject("unassessedEvents", unassessedEvents);
 		result.addObject("errorMessage", errorMessage);
+		result.addObject("withCancelled", withCancelled);
 
 		return result;
 	}

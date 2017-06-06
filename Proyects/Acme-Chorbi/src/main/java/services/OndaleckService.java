@@ -12,90 +12,94 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.CovfefeRepository;
-import domain.Covfefe;
+import repositories.OndaleckRepository;
+import domain.Administrator;
 import domain.Event;
 import domain.Manager;
+import domain.Ondaleck;
+import forms.CancelOndalek;
 
 @Service
 @Transactional
-public class CovfefeService {
+public class OndaleckService {
 
 	@Autowired
-	CovfefeRepository	covfefeRepository;
+	OndaleckRepository		covfefeRepository;
 
 	@Autowired
-	ManagerService		managerService;
+	ManagerService			managerService;
 
 	@Autowired
-	Validator			validator;
+	AdministratorService	adminService;
+
+	@Autowired
+	Validator				validator;
 
 
-	public CovfefeService() {
+	public OndaleckService() {
 
 		super();
 	}
 
-	public Covfefe create() {
+	public Ondaleck create(final Event event) {
 
-		final Covfefe result = new Covfefe();
-		Manager principal;
-
-		principal = this.managerService.findByPrincipal();
+		final Ondaleck result = new Ondaleck();
 
 		result.setMoment(new Date(System.currentTimeMillis() - 1));
-		result.setManager(principal);
-		result.setUniqueLabel(this.randomKey());
-
+		result.setEvent(event);
 		return result;
 
 	}
 
-	public Collection<Covfefe> findAll() {
+	public Collection<Ondaleck> findAll() {
 
 		return this.covfefeRepository.findAll();
 	}
 
-	public Covfefe findOne(final int covfefeId) {
+	public Ondaleck findOne(final int covfefeId) {
 
 		return this.covfefeRepository.findOne(covfefeId);
 	}
 
-	public Covfefe save(final Covfefe covfefe) {
+	public Ondaleck save(final Ondaleck covfefe) {
 
-		Covfefe result;
+		Ondaleck result;
 
 		covfefe.setMoment(new Date(System.currentTimeMillis() - 1));
-
+		Assert.isTrue(this.covfefeRepository.findByEvent(covfefe.getEvent().getId()) == null, "covfefe.event.duplicated");
+		if (covfefe.getId() == 0)
+			Assert.isTrue(covfefe.getEvent().getMoment().after(new Date()), "covfefe.event.past");
 		result = this.covfefeRepository.save(covfefe);
 
 		return result;
 
 	}
 
-	public void delete(final Covfefe covfefe) {
+	public void delete(final Ondaleck covfefe) {
 
 		this.covfefeRepository.delete(covfefe);
 	}
 
-	public Covfefe reconstruct(final Covfefe covfefe, final BindingResult binding) {
+	public Ondaleck reconstruct(final Ondaleck covfefe, final BindingResult binding) {
 
-		Covfefe result;
-		result = this.create();
+		Ondaleck result;
+		result = this.create(covfefe.getEvent());
 		if (covfefe.getId() != 0)
 			result = this.findOne(covfefe.getId());
 
 		result.setDescription(covfefe.getDescription());
 		result.setEvent(covfefe.getEvent());
 		result.setMoment(covfefe.getMoment());
-		result.setScore(covfefe.getScore());
+		result.setAssessment(covfefe.getAssessment());
 		result.setTitle(covfefe.getTitle());
-		result.setUniqueLabel(covfefe.getUniqueLabel());
-
-		result.setManager(this.managerService.findByPrincipal());
+		if (covfefe.getId() == 0) {
+			result.setUniqueLabel(this.randomKey());
+			result.setAdmin(this.adminService.findByPrincipal());
+		}
 
 		this.validator.validate(result, binding);
 
@@ -103,19 +107,19 @@ public class CovfefeService {
 	}
 	//Queries
 
-	public Collection<Covfefe> findAllByManager(final Manager manager) {
+	public Collection<Ondaleck> findAllByAdmin(final Administrator manager) {
 
-		Collection<Covfefe> result;
-		result = new ArrayList<Covfefe>();
+		Collection<Ondaleck> result;
+		result = new ArrayList<Ondaleck>();
 
-		result = this.covfefeRepository.findAllByManager(manager.getId());
+		result = this.covfefeRepository.findAllByAdmin(manager.getId());
 
 		return result;
 	}
 
-	public Covfefe findByEvent(final Event event) {
+	public Ondaleck findByEvent(final Event event) {
 
-		Covfefe result;
+		Ondaleck result;
 		result = this.covfefeRepository.findByEvent(event.getId());
 		return result;
 	}
@@ -123,7 +127,7 @@ public class CovfefeService {
 	public Double ratioCovfefesWithMoreThanThree() {
 
 		Double result;
-		result = this.covfefeRepository.ratioCovfefesWithMoreThanThree();
+		result = this.covfefeRepository.ratioEventsOndaleck();
 		return result;
 
 	}
@@ -134,7 +138,7 @@ public class CovfefeService {
 		Manager result = null;
 
 		aux = new ArrayList<Manager>();
-		aux.addAll(this.covfefeRepository.managerWithMoreCovfefesWith5());
+		aux.addAll(this.covfefeRepository.managerWithMoreEventsWithOndaleck());
 
 		if (!aux.isEmpty())
 			result = aux.get(0);
@@ -142,14 +146,14 @@ public class CovfefeService {
 		return result;
 	}
 
-	public Collection<Covfefe> findAllNotCanceled() {
+	public Collection<Ondaleck> findAllNotCanceled() {
 
 		return this.covfefeRepository.findAllNotCanceled();
 	}
 
-	public Collection<Covfefe> findAllByPrincipal() {
+	public Collection<Ondaleck> findAllByPrincipal() {
 
-		return this.findAllByManager(this.managerService.findByPrincipal());
+		return this.findAllByAdmin(this.adminService.findByPrincipal());
 	}
 
 	public void flush() {
@@ -195,9 +199,23 @@ public class CovfefeService {
 
 		String result = "";
 
-		result += /* aquí generamos la clave */this.dateKeyGenerator("yyMMdd") + this.randomAlphaNumeric() + this.randomLetter() + this.randomNumber();
+		result = this.randomAlphaNumeric() + this.randomAlphaNumeric() + this.randomAlphaNumeric() + this.randomAlphaNumeric() + this.randomAlphaNumeric() + "#" + this.randomNumber() + this.randomNumber() + this.randomNumber() + this.randomNumber()
+			+ this.randomNumber();
 
 		return result;
+	}
+
+	public Ondaleck cancel(final CancelOndalek canceler) {
+		Ondaleck ondaleck;
+		Ondaleck result;
+		ondaleck = canceler.getCovfefe();
+
+		ondaleck.setJustification(canceler.getJustification());
+
+		result = this.covfefeRepository.save(ondaleck);
+
+		return result;
+
 	}
 
 }

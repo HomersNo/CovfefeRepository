@@ -175,4 +175,8 @@ public class EventService {
 		return this.eventRepository.findAllNoCovfefe();
 	}
 
+	public Collection<Event> findAllWithCancelled() {
+		return this.eventRepository.findWithCancelledOndaleck();
+	}
+
 }

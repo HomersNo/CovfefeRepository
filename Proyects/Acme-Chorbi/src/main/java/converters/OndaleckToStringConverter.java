@@ -5,14 +5,14 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.Covfefe;
+import domain.Ondaleck;
 
 @Component
 @Transactional
-public class CovfefeToStringConverter implements Converter<Covfefe, String> {
+public class OndaleckToStringConverter implements Converter<Ondaleck, String> {
 
 	@Override
-	public String convert(final Covfefe covfefe) {
+	public String convert(final Ondaleck covfefe) {
 		String result;
 
 		if (covfefe == null)
