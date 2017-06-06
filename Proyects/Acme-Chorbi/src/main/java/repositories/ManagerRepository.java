@@ -19,4 +19,7 @@ public interface ManagerRepository extends JpaRepository<Manager, Integer> {
 	@Query("select m from Manager m where m.userAccount.id = ?1")
 	Manager findByUserAccountId(int userAcountId);
 
+	@Query("select e.organiser from Event e where e in (select c.event from Meshwork c) group by e.organiser order by count(e) DESC")
+	Collection<Manager> managerWithMoreMeshworksWith5();
+
 }

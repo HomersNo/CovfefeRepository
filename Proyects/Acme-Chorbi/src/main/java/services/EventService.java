@@ -170,9 +170,18 @@ public class EventService {
 		return result;
 	}
 
-	public Collection<Event> findAllNoCovfefe() {
+	public Collection<Event> findAllNoMeshwork() {
 
-		return this.eventRepository.findAllNoCovfefe();
+		return this.eventRepository.findAllNoMeshwork();
+	}
+
+	public Collection<Event> findAllMeshworkeable() {
+
+		Collection<Event> result;
+
+		result = this.findAllNoMeshwork();
+
+		return result;
 	}
 
 }

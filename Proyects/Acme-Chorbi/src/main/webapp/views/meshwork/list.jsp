@@ -23,53 +23,46 @@
 
 
 <display:table pagesize="5" keepStatus="true"
-	name="covfefes" requestURI="${requestURI}" id="row">
+	name="Meshworks" requestURI="meshwork/administrator/list.do" id="row">
 	<security:authentication property="principal" var ="loggedactor"/>
 	
-	<spring:message code="covfefe.title" var="titleHeader" />
-	<spring:message code="covfefe.description" var="descriptionHeader" />
-	<spring:message code="covfefe.moment" var="momentHeader" />
-	<spring:message code="covfefe.score" var="scoreHeader" />
-	<spring:message code="covfefe.uniqueLabel" var="labelHeader" />
+	<spring:message code="Meshwork.title" var="titleHeader" />
+	<spring:message code="Meshwork.description" var="descriptionHeader" />
+	<spring:message code="Meshwork.moment" var="momentHeader" />
+	<spring:message code="Meshwork.assesment" var="scoreHeader" />
+	<spring:message code="Meshwork.uniqueLabel" var="labelHeader" />
 	
 	<jstl:choose>
-		<jstl:when test="${not empty ownCovfefes && ownCovfefes.contains(row)}">
+		<jstl:when test="${not empty ownMeshworks && ownMeshworks.contains(row)}">
 			<display:column property="title" title="${titleHeader}" sortable="true" style="${own}"/>
 			<display:column property="description" title="${descriptionHeader}" sortable="true" style="${own}" />
 			<display:column property="moment" title="${momentHeader}" sortable="true" style="${own}" />
-			<display:column property="score" title="${scoreHeader}" sortable="true" style="${own}" />
+			<display:column property="assesment" title="${scoreHeader}" sortable="true" style="${own}" />
 			<display:column property="uniqueLabel"  title="${labelHeader}" sortable="true" style="${own}" />
+			
 		</jstl:when>
 		<jstl:otherwise>
 			<display:column property="title" title="${titleHeader}" sortable="true"/>
 			<display:column property="description" title="${descriptionHeader}" sortable="true" />
 			<display:column property="moment" title="${momentHeader}" sortable="false"  />
-			<display:column property="score" title="${scoreHeader}" sortable="true" />
+			<display:column property="assesment" title="${scoreHeader}" sortable="true" />
 			<display:column property="uniqueLabel"  title="${labelHeader}" sortable="true"/>
 		</jstl:otherwise>
 	</jstl:choose>
 	
 	
-	<security:authorize access="hasRole('MANAGER')">
-	
-		<spring:message code="covfefe.edit" var="editHeader" />
-		<display:column title="${editHeader}">
-		<jstl:if test="${loggedactor.id == row.manager.userAccount.id}">
-			<a href="covfefe/_manager/edit.do?covfefeId=${row.id}"><spring:message code="covfefe.edit" /> </a>
-		</jstl:if>
-		</display:column>
 	
 	
-
-	</security:authorize>
-	
-	<security:authorize access="isAuthenticated()">
-		<spring:message code="covfefe.cancel" var="cancelHeader" />
+	<security:authorize access="hasRole('ADMIN')">
+		<spring:message code="Meshwork.cancel" var="cancelHeader" />
 		<display:column title="${cancelHeader}">
-		<jstl:if test="${true}"> <!-- Change true for whatever condition it may be -->
-			<a href="covfefe/actor/cancel.do?covfefeId=${row.id}">
-			<spring:message code="covfefe.cancel"/>
+		<jstl:if test="${row.justification == null || row.justification == ''}"> <!-- Change true for whatever condition it may be -->
+			<a href="meshwork/administrator/cancel.do?meshworkId=${row.id}">
+			<spring:message code="Meshwork.cancel"/>
 			 </a>
+		</jstl:if>
+		<jstl:if test="${row.justification != null || row.justification != ''}">
+			<jstl:out  value="${row.justification }"/>
 		</jstl:if>
 		</display:column>
 	</security:authorize>
@@ -78,10 +71,10 @@
 
 
 <br>
-<security:authorize access="hasRole('MANAGER')">
+<security:authorize access="hasRole('ADMIN')">
 	<input type="button" name="create"
-		value="<spring:message code="covfefe.create" />"
-		onclick="location.href = ('covfefe/_manager/create.do');" />
+		value="<spring:message code="Meshwork.create" />"
+		onclick="location.href = ('meshwork/administrator/create.do');" />
 </security:authorize>
 
 <br/>

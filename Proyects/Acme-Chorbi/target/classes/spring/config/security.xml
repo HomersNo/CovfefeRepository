@@ -84,11 +84,11 @@
 		<security:intercept-url pattern="/_manager/display**" access="isAuthenticated()"/>
 		
 		
-		<!-- Covfefe -->
+		<!-- Meshwork -->
 		
-		<security:intercept-url pattern="/covfefe/list.do**" access="permitAll"/>
-		<security:intercept-url pattern="/covfefe/_manager/**.do**" access="hasRole('MANAGER')"/>
-		<security:intercept-url pattern="/covfefe/actor/**.do**" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/meshwork/display.do**" access="permitAll"/>
+		<security:intercept-url pattern="/meshwork/administrator/**" access="hasRole('ADMIN')"/>
+
 		 
 		<!-- Redirects --> 
 		<security:intercept-url pattern="/redirect/**" access="permitAll" /> 

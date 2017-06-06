@@ -3,17 +3,17 @@ package forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import domain.Covfefe;
+import domain.Meshwork;
 
-public class CancelCovfefe {
+public class CancelMeshwork {
 
-	public CancelCovfefe() {
+	public CancelMeshwork() {
 		super();
 	}
 
 
-	private String	justification;
-	private Covfefe	covfefe;
+	private String		justification;
+	private Meshwork	meshwork;
 
 
 	@NotBlank
@@ -25,11 +25,11 @@ public class CancelCovfefe {
 		this.justification = justification;
 	}
 
-	public Covfefe getCovfefe() {
-		return this.covfefe;
+	public Meshwork getMeshwork() {
+		return this.meshwork;
 	}
 
-	public void setCovfefe(final Covfefe covfefe) {
-		this.covfefe = covfefe;
+	public void setMeshwork(final Meshwork meshwork) {
+		this.meshwork = meshwork;
 	}
 }

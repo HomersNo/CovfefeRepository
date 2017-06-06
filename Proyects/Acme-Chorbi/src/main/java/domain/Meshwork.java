@@ -5,27 +5,28 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Covfefe extends DomainEntity {
+public class Meshwork extends DomainEntity {
 
 	// Constructors -----------------------------------------------------------
 
-	public Covfefe() {
+	public Meshwork() {
 		super();
 	}
 
@@ -35,12 +36,13 @@ public class Covfefe extends DomainEntity {
 	private String	title;
 	private String	description;
 	private Date	moment;
-	private Integer	score;
+	private String	assesment;
 	private String	uniqueLabel;
 	private String	justification;
 
 
 	@NotBlank
+	@Size(min = 1, max = 10)
 	public String getTitle() {
 		return this.title;
 	}
@@ -48,6 +50,7 @@ public class Covfefe extends DomainEntity {
 		this.title = title;
 	}
 	@NotBlank
+	@Size(min = 1, max = 100)
 	public String getDescription() {
 		return this.description;
 	}
@@ -56,6 +59,8 @@ public class Covfefe extends DomainEntity {
 	}
 
 	@NotBlank
+	@Pattern(regexp = "^\\d{4}-\\w{3}$")
+	@Column(unique = true)
 	public String getUniqueLabel() {
 		return this.uniqueLabel;
 	}
@@ -74,14 +79,13 @@ public class Covfefe extends DomainEntity {
 		this.moment = moment;
 	}
 
-	@Max(5)
-	@Min(0)
 	@NotNull
-	public Integer getScore() {
-		return this.score;
+	@Pattern(regexp = "^HIGHLY RECOMMENDED|RECOMMENDED|NOT RECOMMENDED$")
+	public String getAssesment() {
+		return this.assesment;
 	}
-	public void setScore(final Integer score) {
-		this.score = score;
+	public void setAssesment(final String assesment) {
+		this.assesment = assesment;
 	}
 
 	public String getJustification() {
@@ -96,18 +100,18 @@ public class Covfefe extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	private Manager	manager;
-	private Event	event;
+	private Administrator	administrator;
+	private Event			event;
 
 
 	@Valid
 	@NotNull
 	@ManyToOne()
-	public Manager getManager() {
-		return this.manager;
+	public Administrator getAdministrator() {
+		return this.administrator;
 	}
-	public void setManager(final Manager manager) {
-		this.manager = manager;
+	public void setAdministrator(final Administrator administrator) {
+		this.administrator = administrator;
 	}
 
 	@Valid

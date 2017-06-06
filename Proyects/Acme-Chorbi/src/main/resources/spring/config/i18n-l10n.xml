@@ -33,7 +33,7 @@
 		<value>/views/likes/messages</value>
 		<value>/views/event/messages</value>
 		<value>/views/manager/messages</value>
-		<value>/views/covfefe/messages</value>
+		<value>/views/meshwork/messages</value>
 	</util:list>
 
 </beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="meshwork/list" extends="master.page">	
+		<put-attribute name="title" value="List meshworks" />
+		<put-attribute name="body" value="/views/meshwork/list.jsp" />
+	</definition>
+	
+	<definition name="meshwork/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit meshwork" />
+		<put-attribute name="body" value="/views/meshwork/edit.jsp" />
+	</definition>
+	
+	<definition name="meshwork/cancel" extends="master.page">	
+		<put-attribute name="title" value="Cancel meshwork" />
+		<put-attribute name="body" value="/views/meshwork/cancel.jsp" />
+	</definition>
+	
+	<definition name="meshwork/display" extends="master.page">	
+		<put-attribute name="title" value="Display meshwork" />
+		<put-attribute name="body" value="/views/meshwork/display.jsp" />
+	</definition>
+	
+</tiles-definitions>

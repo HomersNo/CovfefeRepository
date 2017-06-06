@@ -6,20 +6,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.CovfefeRepository;
-import domain.Covfefe;
+import repositories.MeshworkRepository;
+import domain.Meshwork;
 
 @Component
 @Transactional
-public class StringToCovfefeConverter implements Converter<String, Covfefe> {
+public class StringToMeshworkConverter implements Converter<String, Meshwork> {
 
 	@Autowired
-	CovfefeRepository	covfefeRepository;
+	MeshworkRepository	meshworkRepository;
 
 
 	@Override
-	public Covfefe convert(final String text) {
-		Covfefe result;
+	public Meshwork convert(final String text) {
+		Meshwork result;
 		int id;
 
 		if (text == "")
@@ -27,7 +27,7 @@ public class StringToCovfefeConverter implements Converter<String, Covfefe> {
 		else
 			try {
 				id = Integer.valueOf(text);
-				result = this.covfefeRepository.findOne(id);
+				result = this.meshworkRepository.findOne(id);
 			} catch (final Throwable oops) {
 				throw new IllegalArgumentException(oops);
 			}

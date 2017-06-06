@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.EventService;
+import services.MeshworkService;
 import domain.Event;
+import domain.Meshwork;
 
 @Controller
 @RequestMapping("/event")
@@ -21,6 +23,9 @@ public class EventController extends AbstractController {
 
 	@Autowired
 	private EventService	eventService;
+
+	@Autowired
+	private MeshworkService	meshworkService;
 
 
 	//Constructor
@@ -37,9 +42,14 @@ public class EventController extends AbstractController {
 
 		Collection<Event> events;
 
+		Collection<Meshwork> meshworks;
+
+		meshworks = this.meshworkService.findAllNotCanceled();
+
 		events = this.eventService.findAllEventsInOneMonth();
 
 		result = new ModelAndView("event/list");
+		result.addObject("meshworks", meshworks);
 		result.addObject("requestURI", "event/listInminent.do");
 		result.addObject("events", events);
 		result.addObject("errorMessage", errorMessage);
@@ -52,10 +62,14 @@ public class EventController extends AbstractController {
 		ModelAndView result;
 
 		Collection<Event> events;
+		Collection<Meshwork> meshworks;
+
+		meshworks = this.meshworkService.findAllNotCanceled();
 
 		events = this.eventService.findAll();
 
 		result = new ModelAndView("event/list");
+		result.addObject("meshworks", meshworks);
 		result.addObject("requestURI", "event/list.do");
 		result.addObject("events", events);
 		result.addObject("errorMessage", errorMessage);

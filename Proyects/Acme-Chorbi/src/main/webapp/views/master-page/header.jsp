@@ -79,8 +79,8 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="permitAll()">
-			<li><a class="fNiv" href="covfefe/list.do">covfefes</a></li>
+		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv" href="meshwork/administrator/list.do">Meshworks</a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CHORBI')">

@@ -19,26 +19,37 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme"	tagdir="/WEB-INF/tags"%>
 
-<form:form action="${requestURI}" modelAttribute="covfefe">
+<form:form action="${requestURI}" modelAttribute="meshwork">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="uniqueLabel" />
 	
 
-	<acme:textbox code="covfefe.title" path="title"/><br />
-	<acme:textbox code="covfefe.description" path="description"/><br />
+	<acme:textbox code="Meshwork.title" path="title"/><br />
+	<acme:textbox code="Meshwork.description" path="description"/><br />
 	<div>
 		<form:label path="moment">
-			<spring:message code="covfefe.moment" />:
+			<spring:message code="Meshwork.moment" />:
 		</form:label>
 		<form:input readonly="true" placeholder="dd/MM/yyyy HH:mm" path="moment" />
 		<form:errors cssClass="error" path="moment" />
 	</div> <br>
-	<acme:textbox code="covfefe.score" path="score"/><br />
-	<acme:textbox code="covfefe.uniqueLabel" path="uniqueLabel" readonly="true"/><br />
+	<form:label path="assesment">
+		<spring:message code="Meshwork.assesment" />:
+	</form:label>
+	<form:select id="assesment" path="assesment">
+		
+			<form:option value="HIGHLY RECOMMENDED" label="HIGHLY RECOMMENDED" />
+			<form:option value="RECOMMENDED" label="RECOMMENDED" />
+			<form:option value="NOT RECOMMENDED" label="NOT RECOMMENDED" />
+
+	</form:select>
+	<form:errors cssClass="error" path="assesment" />
+	<br> <br>
 	
 		<form:label path="event">
-		<spring:message code="covfefe.event" />:
+		<spring:message code="Meshwork.event" />:
 	</form:label>
 	<form:select id="events" path="event">
 		<jstl:forEach items="${events}" var="thisEvent">
@@ -50,10 +61,10 @@
 
 
 	<input type="submit" name="save"
-		value="<spring:message code="covfefe.save" />" />&nbsp; 
+		value="<spring:message code="Meshwork.save" />" />&nbsp; 
 	<input type="button" name="cancel"
-		value="<spring:message code="covfefe.cancel" />"
-		onclick="location.href = ('covfefe/list.do');" />
+		value="<spring:message code="Meshwork.cancel" />"
+		onclick="location.href = ('Meshwork/list.do');" />
 	<br />
 
 	

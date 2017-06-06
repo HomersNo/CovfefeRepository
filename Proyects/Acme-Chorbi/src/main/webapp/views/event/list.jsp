@@ -22,7 +22,7 @@
 <jstl:set var="full" value="font-weight: grey; color:grey; background-color:white;" />
 <jstl:set var="Inminent" value="color:white; font-weight:bold; background-color:black;" />
 <jstl:set var="passed" value="background-color:red; color: black; font-weight:bold;" />
-<jstl:set var="available" value="background-color:green; color: black; font-weight:bold;" />
+<jstl:set var="available" value="background-color:#99ff66; color: black; font-weight:bold;" />
 
 
 <display:table pagesize="5" keepStatus="true"
@@ -39,6 +39,13 @@
 		<jstl:when test="${row.registered.size() == row.numberSeat }">
 			<display:column property="title" title="${titleHeader}" sortable="true" style="${full}"/>
 			<display:column property="description" title="${descriptionHeader}" sortable="true" style="${full}" />
+			<display:column title="Meshwork" style="${full}">
+				<jstl:forEach items="${meshworks}" var="thisMeshwork">
+				<jstl:if test="${thisMeshwork.event.id == row.id }">
+					<a href="meshwork/display.do?meshworkId=${thisMeshwork.id }"><jstl:out value="${thisMeshwork.title}"/></a>
+				</jstl:if>
+			</jstl:forEach>	
+			</display:column>
 			<display:column property="moment" title="${momentHeader}" sortable="true" style="${full}" />
 			<display:column property="numberSeat" title="${numberSeatHeader}" sortable="true" style="${full}" />
 			<display:column  title="${pictureHeader}" sortable="true" style="${full}" >
@@ -53,6 +60,13 @@
 				<jstl:when test="${row.moment.time > now && row.moment.time < oneMonth}">
 					<display:column property="title" title="${titleHeader}" sortable="true" style="${Inminent}"/>
 					<display:column property="description" title="${descriptionHeader}" sortable="true" style="${Inminent}" />
+					<display:column title="Meshwork" style="${Inminent}">
+						<jstl:forEach items="${meshworks}" var="thisMeshwork">
+						<jstl:if test="${thisMeshwork.event.id == row.id }">
+							<a href="meshwork/display.do?meshworkId=${thisMeshwork.id }"><jstl:out value="${thisMeshwork.title}"/></a>
+						</jstl:if>
+					</jstl:forEach>	
+					</display:column>
 					<display:column property="moment" title="${momentHeader}" sortable="true" style="${Inminent}" />
 					<display:column property="numberSeat" title="${numberSeatHeader}" sortable="true" style="${Inminent}" />
 					<display:column title="${pictureHeader}" sortable="true" style="${Inminent}" >
@@ -62,6 +76,9 @@
 				<jstl:when test="${row.moment.time < now}">
 					<display:column property="title" title="${titleHeader}" sortable="true" style="${passed}"/>
 					<display:column property="description" title="${descriptionHeader}" sortable="true" style="${passed}" />
+					<display:column title="Meshwork" style="${passed}">
+						
+					</display:column>
 					<display:column property="moment" title="${momentHeader}" sortable="true" style="${passed}" />
 					<display:column property="numberSeat" title="${numberSeatHeader}" sortable="true" style="${passed}" />
 					<display:column title="${pictureHeader}" sortable="true" style="${passed}" >
@@ -69,19 +86,48 @@
 					</display:column>
 				</jstl:when>
 				<jstl:otherwise>
-
+				
+					
 					<display:column property="title" title="${titleHeader}" sortable="true" style="${available}"/>
 					<display:column property="description" title="${descriptionHeader}" sortable="true" style="${available}"/>
+					<display:column title="Meshwork" style="${available}">
+					<jstl:set var="flag" value="false"/>
+						<jstl:forEach items="${meshworks}" var="thisMeshwork">
+						<jstl:if test="${thisMeshwork.event.id == row.id && flag == false}">
+							<a href="meshwork/display.do?meshworkId=${thisMeshwork.id }"><jstl:out value="${thisMeshwork.title}"/></a>
+
+							<jstl:set var="flag" value="true"/>
+
+						</jstl:if>
+					</jstl:forEach>	
+					<security:authorize access="hasRole('ADMIN')">
+					<jstl:forEach items="${meshworks}" var="thisMeshwork">
+					<jstl:if test="${thisMeshwork.event.id != row.id && flag == false}">
+
+							<a href="meshwork/administrator/create.do?eventId=${row.id }"><spring:message code="event.meshwork.new"/></a>
+							
+							<jstl:set var="flag" value="true"/>
+
+						</jstl:if>
+					</jstl:forEach>
+					</security:authorize>
+					</display:column>
 					<display:column property="moment" title="${momentHeader}" sortable="true" style="${available}"/>
 					<display:column property="numberSeat" title="${numberSeatHeader}" sortable="true" style="${available}"/>
 					<display:column title="${pictureHeader}" sortable="true" style="${available}">
-
+				
 						<img src="${row.picture }" height="120"/>
 					</display:column>
+
+					
+				
+				
 				</jstl:otherwise>
 			</jstl:choose>
 		</jstl:otherwise>
 	</jstl:choose>
+	
+	
 	
 	
 	<security:authorize access="hasRole('MANAGER')">
@@ -121,6 +167,7 @@
 			 </a>
 		</jstl:if>
 		</display:column>
+		
 	</security:authorize>
 	
 </display:table>

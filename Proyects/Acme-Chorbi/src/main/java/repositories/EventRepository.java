@@ -22,7 +22,10 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 	@Query("select e from Event e where e.organiser.id = ?1")
 	Collection<Event> findAllByPrincipal(int id);
 
-	@Query("select e from Event e where e not in (select c.event from Covfefe c)")
-	Collection<Event> findAllNoCovfefe();
+	@Query("select e from Event e where e not in (select c.event from Meshwork c where c.justification = '' or c.justification is null)")
+	Collection<Event> findAllNoMeshwork();
+
+	@Query("select count(e)*1.0/(select count(e)*1.0 from Event e) from Event e where e in (select c.event from Meshwork c)")
+	Double ratioEventsWithMeshwork();
 
 }
