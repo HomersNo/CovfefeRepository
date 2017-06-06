@@ -1,0 +1,105 @@
+﻿---- Conceptual Model -----
++ Navegabilidad no explícita
++ Todo lo que sea relevante en el sistema menos cuentas de usuario
++ Clases relacionales, pero no hay clases intermedias
+
+
+---- Domain Model ----
++ Navegabilidad explícita
++ Igual que Conceptual pero con cuentas de usuario
++ Clases intermedias donde proceda
+
+
+---- Java Model ----
++ Anotaciones Not Blank y Not Null en todo lo que no sea opcional siempre que proceda
++ @ElementCollection en colecciones de tipos primitivos/Objetos no creados nuevos
++ @Valid en todos los objetos que sean creados por usuario
++ @NotEmpty donde proceda
++ En las relaciones bidireccionales: mappedBy
++ Para que se creen bien las relaciones automáticamente (Normalmente) CascadeType.PERSIST
++ CascadeType.Delete solo si borrando la clase donde está puesto tiene sentido que se borre el otro objeto de la relación
++ JAMÁS PONER EL MISMO NOMBRE DE LA CLASE A UN ATRIBUTO
++ @Column (unique = true)
++ @Pattern(regexp = "") los \w son \\w
+
+
+---- Populate ----
++ No mucho que decir, simplemente poner las cosas en un orden que tenga sentido según el mappedBy, y asegurarse de poner las 
+propiedades con el nombre bien y en el formato adecuado
+
+
+---- Repositorios ----
++ Normalmente no hay que sobreescribir nada
++ Left Join hace que se devuelvan los objetos de la tabla de la izquierda siempre aunque no haya ninguna correspondencia con 
+la tabla de la derecha, en cuyo caso saca un nulo para la de la derecha.
++ No se puede hacer media de otras operaciones tipo cuenta, así que en ese caso es mejor tratar el resultado de la query en 
+el servicio o dividirla en varias y tratarla igual. (Respecto a esto, tengo que testear una cosa, y es que si se le podría 
+pasar algo así a la query: Select avg(?1) from X where whatever)
+
+
+---- Servicios ----
++ Métodos Java, no hay mucho que decir aquí, simplemente que todos los métodos del repositorio tienen que estar aquí tratados 
+o sin tratar
++ POR FAVOR, EVITAR BUCLES FOR, SE ACABA ANTES HACIENDO UNA QUERY Y TRATÁNDOLA NORMALMENTE. SI NO SE PUEDE O NO SE OCURRE NADA,
+PERO QUE NO SEA POR PEREZA.
+
+
+---- Tests ----
++ Dudo que pidan que hagamos tests, pero bueno, simplemente seguir el esquema ya hecho
+
+
+---- Vistas ----
++ LOS PUTOS FORM:HIDDEN MALDITA SEA, PONEDLOS, QUE SI NI YO DICIENDO QUE LOS PONGÁIS LOS PONÉIS NO ME QUIERO IMAGINAR EN EL 
+EXAMEN CON LOS NERVIOS.
++ Aparte de esto, no tiene mucho más, hay tres ejemplos maravillosos en nuestro proyecto de vistas que pueden servir para todo.
+La vista de Receta de Alberto con sus formularios dentro, la vista de systemConf y la vista de Display MasterClass o Edit 
+MasterClass, no lo tengo claro.
++ AH, SÍ, LA PUTA INTERNACIONALIZACIÓN JODER, Y EL PUTO TILES.XML. Recordad que el valor del "definition-name" es el valor 
+que se le tiene que pasar al controlador
++ También tendréis que tocar la masterpage, lo mismo, cuidad la internacionalización y intentad no cargaros nada. Usad los 
+<security:authenticate> o como sea bien y todo irá maravilloso
+
+
+---- Controladores ----
++ Un controlador por clase y permiso
++ Por favor, en los métodos que llaman a otros métodos, no insertéis objetos a no ser que tenga sentido. Es decir, si el 
+CreateEditModelAndView(X) llama al otro Create, en el primero no se le inserta ningún objeto a la vista
++ CRUD y después métodos. Los redirect hay ejemplos a puntapala en el proyecto, no reinventéis la rueda.
+
+
+---- FICHEROS DE CONFIGURACION ----
++ En el examen solo se tienen que tocar los siguientes: CONVERTERS.XML, SECURITY.XML, TILES.XML Y I18L10N.XML. ASEGURÁOS DE 
+TOCARLOS ANTES DE INICIAR EL PROYECTO EN TOMCAT O TENDRÉIS QUE REINICIAR EL SERVIDOR CON UN CLEAN.
++ AÑADID LOS CONVERTERS BIEN, Y AÑADIDLOS AL PAQUETE DE CONVERTERS, JUAS.
++ En el security recomiendo no poner nunca permitAll en el permiso, porque suele ir mal, si los ponéis se pone absolutamente 
+lo primero, porque lo que vaya después lo va sobreescribiendo, si se pone al final, éste sobreescribirá todos los demás 
+permisos de esa url y relacionadas
+
+PARA EL EXAMEN!!!!
+
+1 - Domain
+2 - Converters
+3 - converters.xml
+4 - Repositorio. Indexar queries en su dominio.
+    Para probar queries: QueryDatabase.java (PARA EL QUERYDATABASE ANTES DE POPULAR!)
+    SI NO LO PARAS, TIENES QUE VOLVER A BORRAR Y CREAR LA BASE DE DATOS. (SCRIPT TEMA 1).
+5 - Populate y PopulateDatabase.java
+6 - Servicio
+7 - Controlador. Si es manager, poner /_manager
+8 - Vista. Tiles y messages.
+9 - header.jsp
+10 - tiles.xml.
+11 - i18n-l10n.xml.
+12 - security.xml. Si es manager, poner /_manager. Comprobar que los permisos estan bien. 
+     Cambiar el permitAll si lo requiere, etc.
+13 - Test funcional (Create en positivo y otro negativo).
+14 - Script del test de rendimiento.
+
+NOTA: Si te cargas Tomcat -> delete -> new wizard -> tomcat 7.0 -> configurar a puerto 8080 -> añadir proyecto -> clean
+
+En la vista de listado de covfefe, la ultima display column que tiene rol chorbi, tiene un if = true. Hay que cambiar ese true
+a lo que sea.
+Comprobar que los permisos estan bien. Cambiar el permitAll si lo requiere, etc.
+
+
+GL&HF

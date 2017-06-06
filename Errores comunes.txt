@@ -1,0 +1,34 @@
+ERRORES DP Y COMO SOLUCIONARLOS!
+
+En debug Mode, el breakpoint se queda en: if(binding.hasErrors())
+	- Mirar los errores en la script de Variables. Hay sale todo.	
+
+Error 404.
+	- Ejecucion parada
+	- Se intenta acceder a un metodo que no existe.
+
+Could not resolve view with name 'campaign/edit' in servlet with name 'Acme-Pad-ThaiServlet'
+	- En algun ModelAndView del controlador, no se le pasa bien el link a la carpeta view.
+	- En el createEditModelAndView del controlador estan mal el link a la carpeta view.
+	- En los tiles de la vista, estan mal los links a la carpeta view.
+
+No message found under code 'campaign.date.format' for locale 'en'.
+	- No hay asignacion a dicho code en el messages.properties de la vista.
+	- Hay que reiniciar el server tras añadir o borrar algo en el messages.properties.
+
+PANIC! this expression must be true at security.LoginService.getPrincipal(LoginService.java:68) at services...
+	- Lo arregle modificando el Create() del servicio de la clase dominada.
+	  Le quite el sponsorService.findByPrincipal del create de dicho servicio.
+
+Invalid property 'holderName' of bean class [domain.Sponsor]: Bean property 'holderName' is not readable or has
+an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+	- En la vista de Edit de la entidad dominante, tenemos que poner en los "path" la entidad a la que 
+	  pertenecen dichos atributos. En este caso: holderName cambiarlo a creditCard.holderName.
+
+
+Neither BindingResult nor plain target object for bean name 'sponsor' available as request attribute
+	- Sobra createModelAndView y metodos create() de la entidad dominada en el controlador de la entidad
+	  dominante.
+
+views/bill/list.jsp (line: 25, column: 38) quote symbol expected
+	- En la linea y columna faltan unas ",normalmente de value= a />
