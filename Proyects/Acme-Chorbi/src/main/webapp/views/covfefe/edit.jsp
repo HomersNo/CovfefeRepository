@@ -35,14 +35,18 @@
 		<form:input readonly="true" placeholder="dd/MM/yyyy HH:mm" path="moment" />
 		<form:errors cssClass="error" path="moment" />
 	</div> <br>
-	<acme:textbox code="covfefe.score" path="assessment"/><br />
 	
-	<form:select path="assessment">
-		<form:option label="<spring:message code ='covfefe.high' />" value="HIGH" />
-		<form:option label="<spring:message code ='covfefe.medium' />" value="MEDIUM" />
-		<form:option label="<spring:message code ='covfefe.low' />" value="LOW" />
-	</form:select>
-	
+	<div>
+		<form:label path="assessment">
+				<spring:message code="covfefe.score" />:
+			</form:label>
+		<form:select path="assessment">
+			<form:option value="HIGH"> <spring:message code ='covfefe.high' /> </form:option>
+			<form:option  value="MEDIUM" ><spring:message code ='covfefe.medium' /></form:option>
+			<form:option  value="LOW" ><spring:message code ='covfefe.low' /></form:option>
+		</form:select>
+		<form:errors cssClass="error" path="assessment" />
+	</div>
 	
 	
 	<br> 
@@ -52,7 +56,7 @@
 		value="<spring:message code="covfefe.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="covfefe.cancel" />"
-		onclick="location.href = ('covfefe/list.do');" />
+		onclick="location.href = ('covfefe/admin/list.do');" />
 	<br />
 
 	

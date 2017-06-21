@@ -71,32 +71,32 @@
 				<jstl:choose>
 					<jstl:when test="${row.admin.userAccount.id == loggedactor.id }">
 						<jstl:choose >
-						<span style="${own}">
-						<jstl:when test="${row.assessment == 'HIGH'}">
-							<spring:message code="covfefe.high" />
-						</jstl:when>
-							<jstl:when test="${row.assessment == 'MEDIUM'}">
-							<spring:message code="covfefe.medium" />
-						</jstl:when>
-						<jstl:when test="${row.assessment == 'LOW'}">
-							<spring:message code="covfefe.low" />
-						</jstl:when>
-						</span>
+							
+								<jstl:when test="${row.assessment == 'HIGH'}">
+									<span style="${own}"><spring:message code="covfefe.high" /></span>
+								</jstl:when>
+								<jstl:when test="${row.assessment == 'MEDIUM'}">
+									<span style="${own}"><spring:message code="covfefe.medium" /></span>
+								</jstl:when>
+								<jstl:when test="${row.assessment == 'LOW'}">
+									<span style="${own}"><spring:message code="covfefe.low" /></span>
+								</jstl:when>
+							
 						</jstl:choose>
 					</jstl:when>
 					<jstl:otherwise>
-						<jstl:choose >
-						<span>
-						<jstl:when test="${row.assessment == 'HIGH'}">
-							<spring:message code="covfefe.high" />
-						</jstl:when>
-							<jstl:when test="${row.assessment == 'MEDIUM'}">
-							<spring:message code="covfefe.medium" />
-						</jstl:when>
-						<jstl:when test="${row.assessment == 'LOW'}">
-							<spring:message code="covfefe.low" />
-						</jstl:when>
-						</span>
+						<jstl:choose>
+							
+								<jstl:when test="${row.assessment == 'HIGH'}">
+									<span><spring:message code="covfefe.high" /></span>
+								</jstl:when>
+								<jstl:when test="${row.assessment == 'MEDIUM'}">
+									<span><spring:message code="covfefe.medium" /></span>
+								</jstl:when>
+								<jstl:when test="${row.assessment == 'LOW'}">
+									<span><spring:message code="covfefe.low" /></span>
+								</jstl:when>
+							
 						</jstl:choose>
 					</jstl:otherwise>
 				</jstl:choose>
