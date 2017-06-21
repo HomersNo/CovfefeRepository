@@ -19,26 +19,33 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme"	tagdir="/WEB-INF/tags"%>
 
-<form:form action="${requestURI}" modelAttribute="covfefe">
+<form:form action="${requestURI}" modelAttribute="loots">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
 
-	<acme:textbox code="covfefe.title" path="title"/><br />
-	<acme:textbox code="covfefe.description" path="description"/><br />
+	<acme:textbox code="loots.title" path="title"/><br />
+	<acme:textbox code="loots.description" path="description"/><br />
 	<div>
 		<form:label path="moment">
-			<spring:message code="covfefe.moment" />:
+			<spring:message code="loots.moment" />:
 		</form:label>
 		<form:input readonly="true" placeholder="dd/MM/yyyy HH:mm" path="moment" />
 		<form:errors cssClass="error" path="moment" />
-	</div> <br>
-	<acme:textbox code="covfefe.score" path="score"/><br />
-	<acme:textbox code="covfefe.uniqueLabel" path="uniqueLabel" readonly="true"/><br />
+	</div> <br><br />
+	
+	<spring:message code="loots.assessment" />:
+	<form:select id="assessment" path="assessment">
+		<form:option value="Highly Recommended" label="Highly Recommended" />
+		<form:option value="Recommended" label="Recommended" />
+		<form:option value="Not Recommended" label="Not Recommended" />
+	</form:select><br><br />
+	
+	<acme:textbox code="loots.uniqueTracer" path="uniqueTracer" readonly="true"/><br />
 	
 		<form:label path="event">
-		<spring:message code="covfefe.event" />:
+		<spring:message code="loots.event" />:
 	</form:label>
 	<form:select id="events" path="event">
 		<jstl:forEach items="${events}" var="thisEvent">
@@ -50,10 +57,10 @@
 
 
 	<input type="submit" name="save"
-		value="<spring:message code="covfefe.save" />" />&nbsp; 
+		value="<spring:message code="loots.save" />" />&nbsp; 
 	<input type="button" name="cancel"
-		value="<spring:message code="covfefe.cancel" />"
-		onclick="location.href = ('covfefe/list.do');" />
+		value="<spring:message code="loots.cancel" />"
+		onclick="location.href = ('loots/administrator/list.do');" />
 	<br />
 
 	

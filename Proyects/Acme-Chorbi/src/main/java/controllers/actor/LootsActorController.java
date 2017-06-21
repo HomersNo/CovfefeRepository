@@ -9,36 +9,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.CovfefeService;
+import services.LootsService;
 import controllers.AbstractController;
-import domain.Covfefe;
-import forms.CancelCovfefe;
+import domain.Loots;
+import forms.CancelLoots;
 
 @Controller
-@RequestMapping("/covfefe/actor")
-public class CovfefeActorController extends AbstractController {
+@RequestMapping("/loots/actor")
+public class LootsActorController extends AbstractController {
 
 	//Services
 
 	@Autowired
-	private CovfefeService	covfefeService;
+	private LootsService	lootsService;
 
 
 	//Constructor
 
-	public CovfefeActorController() {
+	public LootsActorController() {
 		super();
 	}
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int covfefeId) {
+	public ModelAndView create(@RequestParam final int lootsId) {
 
 		ModelAndView result;
-		final CancelCovfefe cancel;
-		final Covfefe covfefe = this.covfefeService.findOne(covfefeId);
+		final CancelLoots cancel;
+		final Loots loots = this.lootsService.findOne(lootsId);
 
-		cancel = new CancelCovfefe();
-		cancel.setCovfefe(covfefe);
+		cancel = new CancelLoots();
+		cancel.setLoots(loots);
 
 		result = this.createEditModelAndView(cancel);
 
@@ -46,45 +46,45 @@ public class CovfefeActorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(final CancelCovfefe cancel, final BindingResult binding) {
+	public ModelAndView save(final CancelLoots cancel, final BindingResult binding) {
 		ModelAndView result;
-		Covfefe covfefe;
+		Loots loots;
 
-		covfefe = cancel.getCovfefe();
+		loots = cancel.getLoots();
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(cancel);
 		else
 			try {
-				covfefe.setJustification(cancel.getJustification());
-				this.covfefeService.save(covfefe);
-				result = new ModelAndView("redirect:/covfefe/list.do");
+				loots.setJustification(cancel.getJustification());
+				this.lootsService.save(loots);
+				result = new ModelAndView("redirect:/loots/administrator/list.do");
 
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(cancel, "covfefe.commit.error");
+				result = this.createEditModelAndView(cancel, "loots.commit.error");
 			}
 		return result;
 	}
 
 	// Ancillary methods
 
-	protected ModelAndView createEditModelAndView(final CancelCovfefe cancel) {
+	protected ModelAndView createEditModelAndView(final CancelLoots cancel) {
 		ModelAndView result;
 
 		result = this.createEditModelAndView(cancel, null);
 
 		return result;
 	}
-	protected ModelAndView createEditModelAndView(final CancelCovfefe cancel, final String message) {
+	protected ModelAndView createEditModelAndView(final CancelLoots cancel, final String message) {
 		ModelAndView result;
 
-		final String requestURI = "covfefe/actor/cancel.do";
+		final String requestURI = "loots/actor/cancel.do";
 
-		result = new ModelAndView("covfefe/cancel");
+		result = new ModelAndView("loots/cancel");
 		result.addObject("cancel", cancel);
 		result.addObject("message", message);
 		result.addObject("requestURI", requestURI);
-		result.addObject("cancelURI", "covfefe/list.do");
+		result.addObject("cancelURI", "loots/administrator/list.do");
 
 		return result;
 	}

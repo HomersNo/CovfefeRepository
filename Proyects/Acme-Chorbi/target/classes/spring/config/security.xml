@@ -86,9 +86,9 @@
 		
 		<!-- Covfefe -->
 		
-		<security:intercept-url pattern="/covfefe/list.do**" access="permitAll"/>
-		<security:intercept-url pattern="/covfefe/_manager/**.do**" access="hasRole('MANAGER')"/>
-		<security:intercept-url pattern="/covfefe/actor/**.do**" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/loots/list.do**" access="permitAll"/>
+		<security:intercept-url pattern="/loots/administrator/**.do**" access="hasRole('ADMIN')"/>
+		<security:intercept-url pattern="/loots/actor/**.do**" access="hasRole('ADMIN')"/>
 		 
 		<!-- Redirects --> 
 		<security:intercept-url pattern="/redirect/**" access="permitAll" /> 

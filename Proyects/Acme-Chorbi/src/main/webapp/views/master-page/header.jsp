@@ -79,8 +79,18 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="permitAll()">
-			<li><a class="fNiv" href="covfefe/list.do">covfefes</a></li>
+		<security:authorize access="isAnonymous()">
+			<li><a class="fNiv" href="loots/list.do">Loots</a></li>
+		</security:authorize>
+		<security:authorize access="hasRole('CHORBI')">
+			<li><a class="fNiv" href="loots/list.do">Loots</a></li>
+		</security:authorize>
+		<security:authorize access="hasRole('MANAGER')">
+			<li><a class="fNiv" href="loots/list.do">Loots</a></li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv" href="loots/administrator/list.do">Loots</a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CHORBI')">

@@ -2,6 +2,7 @@
 package controllers;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.CovfefeService;
-import domain.Covfefe;
+import services.LootsService;
+import domain.Loots;
 
 @Controller
-@RequestMapping("/covfefe")
-public class CovfefeController extends AbstractController {
+@RequestMapping("/loots")
+public class LootsController extends AbstractController {
 
 	//Services
 
 	@Autowired
-	private CovfefeService	covfefeService;
+	private LootsService	lootsService;
 
 
 	//Constructor
 
-	public CovfefeController() {
+	public LootsController() {
 		super();
 	}
 
@@ -35,20 +36,20 @@ public class CovfefeController extends AbstractController {
 	public ModelAndView list(@RequestParam(required = false) final String errorMessage) {
 		ModelAndView result;
 
-		Collection<Covfefe> covfefes;
+		Collection<Loots> loots;
+		Date now;
 
-		covfefes = this.covfefeService.findAllNotCanceled();
-		final Collection<Covfefe> ownCovfefes = this.covfefeService.findAllByPrincipal();
+		now = new Date();
+		loots = this.lootsService.findAllNotCanceled();
 
-		result = new ModelAndView("covfefe/list");
-		result.addObject("requestURI", "covfefe/list.do");
-		result.addObject("covfefes", covfefes);
-		result.addObject("ownCovfefes", ownCovfefes);
+		result = new ModelAndView("loots/list");
+		result.addObject("requestURI", "loots/list.do");
+		result.addObject("loots", loots);
+		result.addObject("now", now);
 		result.addObject("errorMessage", errorMessage);
 
 		return result;
 	}
-
 	// Creation ---------------------------------------------------------------
 
 	// Edition ----------------------------------------------------------------

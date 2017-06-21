@@ -6,41 +6,51 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Covfefe extends DomainEntity {
+@Table(indexes = {
+	@Index(columnList = "justification"), @Index(columnList = "administrator_id"), @Index(columnList = "event_id")
+})
+public class Loots extends DomainEntity {
 
 	// Constructors -----------------------------------------------------------
 
-	public Covfefe() {
+	public Loots() {
 		super();
 	}
 
 
+	public static final String	BEST	= "Highly Recommended";
+	public static final String	OK		= "Recommended";
+	public static final String	BAD		= "Not Recommended";
+
 	// Attributes -------------------------------------------------------------
 
-	private String	title;
-	private String	description;
-	private Date	moment;
-	private Integer	score;
-	private String	uniqueLabel;
-	private String	justification;
+	private String				title;
+	private String				description;
+	private Date				moment;
+	private String				assessment;
+	private String				uniqueTracer;
+	private String				justification;
 
 
 	@NotBlank
+	@Size(min = 1, max = 20)
 	public String getTitle() {
 		return this.title;
 	}
@@ -48,6 +58,7 @@ public class Covfefe extends DomainEntity {
 		this.title = title;
 	}
 	@NotBlank
+	@Size(min = 1, max = 100)
 	public String getDescription() {
 		return this.description;
 	}
@@ -56,11 +67,12 @@ public class Covfefe extends DomainEntity {
 	}
 
 	@NotBlank
-	public String getUniqueLabel() {
-		return this.uniqueLabel;
+	@Pattern(regexp = "^\\d{5}-\\d{5}$")
+	public String getUniqueTracer() {
+		return this.uniqueTracer;
 	}
-	public void setUniqueLabel(final String uniqueLabel) {
-		this.uniqueLabel = uniqueLabel;
+	public void setUniqueTracer(final String uniqueTracer) {
+		this.uniqueTracer = uniqueTracer;
 	}
 
 	@Past
@@ -74,14 +86,13 @@ public class Covfefe extends DomainEntity {
 		this.moment = moment;
 	}
 
-	@Max(5)
-	@Min(0)
+	@Pattern(regexp = "^" + Loots.BEST + "|" + Loots.OK + "|" + Loots.BAD + "$")
 	@NotNull
-	public Integer getScore() {
-		return this.score;
+	public String getAssessment() {
+		return this.assessment;
 	}
-	public void setScore(final Integer score) {
-		this.score = score;
+	public void setAssessment(final String assessment) {
+		this.assessment = assessment;
 	}
 
 	public String getJustification() {
@@ -96,18 +107,18 @@ public class Covfefe extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	private Manager	manager;
-	private Event	event;
+	private Administrator	administrator;
+	private Event			event;
 
 
 	@Valid
 	@NotNull
 	@ManyToOne()
-	public Manager getManager() {
-		return this.manager;
+	public Administrator getAdministrator() {
+		return this.administrator;
 	}
-	public void setManager(final Manager manager) {
-		this.manager = manager;
+	public void setAdministrator(final Administrator administrator) {
+		this.administrator = administrator;
 	}
 
 	@Valid

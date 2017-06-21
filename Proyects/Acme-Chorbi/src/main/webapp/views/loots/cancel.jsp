@@ -21,17 +21,17 @@
 
 <form:form action="${requestURI}" modelAttribute="cancel">
 
-	<form:hidden path="covfefe" />
+	<form:hidden path="loots" />
 	
 
-	<acme:textarea code="covfefe.justification" path="justification"/><br />
+	<acme:textarea code="loots.justification" path="justification"/><br />
 	
 
 
 	<input type="submit" name="save"
-		value="<spring:message code="covfefe.save" />" />&nbsp; 
+		value="<spring:message code="loots.save" />" />&nbsp; 
 	<input type="button" name="cancel"
-		value="<spring:message code="covfefe.cancel" />"
+		value="<spring:message code="loots.cancel" />"
 		onclick="location.href = ('${cancelURI}');" />
 	<br />
 

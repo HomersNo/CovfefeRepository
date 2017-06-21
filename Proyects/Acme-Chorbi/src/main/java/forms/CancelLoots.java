@@ -3,17 +3,17 @@ package forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import domain.Covfefe;
+import domain.Loots;
 
-public class CancelCovfefe {
+public class CancelLoots {
 
-	public CancelCovfefe() {
+	public CancelLoots() {
 		super();
 	}
 
 
 	private String	justification;
-	private Covfefe	covfefe;
+	private Loots	loots;
 
 
 	@NotBlank
@@ -25,11 +25,11 @@ public class CancelCovfefe {
 		this.justification = justification;
 	}
 
-	public Covfefe getCovfefe() {
-		return this.covfefe;
+	public Loots getLoots() {
+		return this.loots;
 	}
 
-	public void setCovfefe(final Covfefe covfefe) {
-		this.covfefe = covfefe;
+	public void setLoots(final Loots loots) {
+		this.loots = loots;
 	}
 }

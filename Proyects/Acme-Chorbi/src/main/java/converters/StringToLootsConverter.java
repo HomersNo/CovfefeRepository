@@ -6,20 +6,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.CovfefeRepository;
-import domain.Covfefe;
+import repositories.LootsRepository;
+import domain.Loots;
 
 @Component
 @Transactional
-public class StringToCovfefeConverter implements Converter<String, Covfefe> {
+public class StringToLootsConverter implements Converter<String, Loots> {
 
 	@Autowired
-	CovfefeRepository	covfefeRepository;
+	LootsRepository	lootsRepository;
 
 
 	@Override
-	public Covfefe convert(final String text) {
-		Covfefe result;
+	public Loots convert(final String text) {
+		Loots result;
 		int id;
 
 		if (text == "")
@@ -27,7 +27,7 @@ public class StringToCovfefeConverter implements Converter<String, Covfefe> {
 		else
 			try {
 				id = Integer.valueOf(text);
-				result = this.covfefeRepository.findOne(id);
+				result = this.lootsRepository.findOne(id);
 			} catch (final Throwable oops) {
 				throw new IllegalArgumentException(oops);
 			}

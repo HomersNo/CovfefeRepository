@@ -170,9 +170,9 @@ public class EventService {
 		return result;
 	}
 
-	public Collection<Event> findAllNoCovfefe() {
+	public Collection<Event> findAllNoLoots() {
 
-		return this.eventRepository.findAllNoCovfefe();
+		return this.eventRepository.findAllNoLoots();
 	}
 
 }

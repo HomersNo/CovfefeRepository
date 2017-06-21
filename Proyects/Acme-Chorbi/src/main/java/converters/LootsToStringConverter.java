@@ -5,20 +5,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.Covfefe;
+import domain.Loots;
 
 @Component
 @Transactional
-public class CovfefeToStringConverter implements Converter<Covfefe, String> {
+public class LootsToStringConverter implements Converter<Loots, String> {
 
 	@Override
-	public String convert(final Covfefe covfefe) {
+	public String convert(final Loots loots) {
 		String result;
 
-		if (covfefe == null)
+		if (loots == null)
 			result = null;
 		else
-			result = String.valueOf(covfefe.getId());
+			result = String.valueOf(loots.getId());
 
 		return result;
 	}

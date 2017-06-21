@@ -16,19 +16,19 @@
        
 <tiles-definitions>
 
-	<definition name="covfefe/list" extends="master.page">	
-		<put-attribute name="title" value="List covfefes" />
-		<put-attribute name="body" value="/views/covfefe/list.jsp" />
+	<definition name="loots/list" extends="master.page">	
+		<put-attribute name="title" value="List loots" />
+		<put-attribute name="body" value="/views/loots/list.jsp" />
 	</definition>
 	
-	<definition name="covfefe/edit" extends="master.page">	
-		<put-attribute name="title" value="Edit covfefe" />
-		<put-attribute name="body" value="/views/covfefe/edit.jsp" />
+	<definition name="loots/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit loot" />
+		<put-attribute name="body" value="/views/loots/edit.jsp" />
 	</definition>
 	
-	<definition name="covfefe/cancel" extends="master.page">	
-		<put-attribute name="title" value="Cancel covfefe" />
-		<put-attribute name="body" value="/views/covfefe/cancel.jsp" />
+	<definition name="loots/cancel" extends="master.page">	
+		<put-attribute name="title" value="Cancel loot" />
+		<put-attribute name="body" value="/views/loots/cancel.jsp" />
 	</definition>
 	
 </tiles-definitions>

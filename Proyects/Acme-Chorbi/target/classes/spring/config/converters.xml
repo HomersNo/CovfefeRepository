@@ -62,8 +62,8 @@
 		<bean class="converters.ManagerToStringConverter" />
 		<bean class="converters.StringToManagerConverter" />
 		
-		<bean class="converters.CovfefeToStringConverter" />
-		<bean class="converters.StringToCovfefeConverter" />
+		<bean class="converters.LootsToStringConverter" />
+		<bean class="converters.StringToLootsConverter" />
 		
 		
 	</util:list>
